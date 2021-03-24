@@ -24,7 +24,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>标签：weChat - JsPeng BLOG</title>
+  <title>标签：WeChat - JsPeng BLOG</title>
   
 
   
@@ -471,25 +471,27 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
   
     <div class='headimg-div'>
-      <a class='headimg-a' href="/2017/12/11/%E5%BE%AE%E4%BF%A1%E8%A7%86%E9%A2%91H5%E5%BC%80%E5%8F%91%E5%B0%8F%E7%BB%93/">
-        <img class='headimg' src='https://blog-1257093177.cos.ap-chengdu.myqcloud.com/WeChat-logo.jpg'/>
+      <a class='headimg-a' href="/2018/10/13/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fwepy%E6%A1%86%E6%9E%B6-minui%E8%B8%A9%E5%9D%91%E4%B9%8B%E8%B7%AF/">
+        <img class='headimg' src='https://blog-1257093177.cos.ap-chengdu.myqcloud.com/mini_program_banner.png'/>
       </a>
     </div>
   
   
     
     <h2 class="article-title" >
-      <a href="/2017/12/11/%E5%BE%AE%E4%BF%A1%E8%A7%86%E9%A2%91H5%E5%BC%80%E5%8F%91%E5%B0%8F%E7%BB%93/">
-        微信视频H5开发小结
+      <a href="/2018/10/13/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fwepy%E6%A1%86%E6%9E%B6-minui%E8%B8%A9%E5%9D%91%E4%B9%8B%E8%B7%AF/">
+        微信小程序wepy框架+minui踩坑之路
       </a>
     </h2>
   
   <div class='md'>
     
       
-        前言近日，由于工作原因，需要开发一款视频类 h5。玩法很简单，用户滚页面至底部，切换全屏视频播放。
-准备全屏同层播放为了满足交互需求，需要达到全屏同层播放，具体配置如下：
-1234567&lt;video    id=&quot;my-video&quot;     type=&quot;video/mp4&quot; x5-video-player-fullscreen=&quot;fal...
+        
+前言：wepy框架类似Vue的MVVM开发模式，并且支持promise与ES7 asnyc异步函数，记录一下项目开发过程中遇到的坑
+
+minUI由于minUI与wepy框架兼容性较好，而且支持单组件导入，所以选择了minUI，使用方式官网有写，需要的组件直接npm安装即可，不过要注意的是，它的form组件对form表单提交支持性并不好，如果想要提交表单还是建议原生或者使用异步提交：
+Not...
       
     
   </div>
@@ -497,7 +499,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <div class='meta-v3' line_style='solid'>
       <div>
         
-        <time>2017-12-11</time>
+        <time>2018-10-13</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/categories/%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">经验总结</a>
@@ -505,7 +507,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       </div>
       
         <div>
-          <a class='readmore' href='/2017/12/11/%E5%BE%AE%E4%BF%A1%E8%A7%86%E9%A2%91H5%E5%BC%80%E5%8F%91%E5%B0%8F%E7%BB%93/'>
+          <a class='readmore' href='/2018/10/13/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fwepy%E6%A1%86%E6%9E%B6-minui%E8%B8%A9%E5%9D%91%E4%B9%8B%E8%B7%AF/'>
             阅读全文
           </a>
         </div>
@@ -1231,7 +1233,7 @@ function setSearchService() {
       // 请求 PV 并自增
       var pvCtn = document.querySelector('#lc-sv');
       if (pvCtn || enableIncr) {
-        var pvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-sv', 'Visits').then((record) => {
+        var pvGetter = this.getRecord(Counter, 'http://www.jspeng.com' + '/#lc-sv', 'Visits').then((record) => {
           incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-sv #number');
           if (eles.length > 0) {
@@ -1249,7 +1251,7 @@ function setSearchService() {
       // 请求 UV 并自增
       var uvCtn = document.querySelector('#lc-uv');
       if (uvCtn || enableIncr) {
-        var uvGetter = this.getRecord(Counter, 'http://example.com' + '/#lc-uv', 'Visitors').then((record) => {
+        var uvGetter = this.getRecord(Counter, 'http://www.jspeng.com' + '/#lc-uv', 'Visitors').then((record) => {
           var vuv = this.validUV();
           vuv && incrArr.push(this.buildIncrement(record.objectId))
           var eles = document.querySelectorAll('#lc-uv #number');
@@ -1271,7 +1273,7 @@ function setSearchService() {
         for (i = 0; i < allPV.length; i++) {
           let pv = allPV[i];
           let title = pv.getAttribute('data-title');
-          var url = 'http://example.com' + pv.getAttribute('data-path');
+          var url = 'http://www.jspeng.com' + pv.getAttribute('data-path');
           if (url) {
             var viewGetter = this.getRecord(Counter, url, title).then((record) => {
               // 是当前页面就自增
@@ -1739,8 +1741,5 @@ document.addEventListener("pjax:success", listennSidebarTOC);
 	  
     </div>
   <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":60,"vOffset":-20},"mobile":{"show":false},"react":{"opacity":0.9},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
-</html>
-<script type="text/javascript" src="/js/click_show_text.js"></script>
-false},"react":{"opacity":0.9},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
 <script type="text/javascript" src="/js/click_show_text.js"></script>
