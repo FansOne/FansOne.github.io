@@ -49,9 +49,9 @@
       
         <tags>
             
-            <tag> 即时通讯 </tag>
-            
             <tag> JavaScript </tag>
+            
+            <tag> 即时通讯 </tag>
             
             <tag> 小程序 </tag>
             
@@ -78,9 +78,9 @@
       
         <tags>
             
-            <tag> JavaScript </tag>
-            
             <tag> vue </tag>
+            
+            <tag> JavaScript </tag>
             
         </tags>
       
@@ -159,9 +159,36 @@
       
         <tags>
             
+            <tag> JavaScript </tag>
+            
             <tag> 学习 </tag>
             
-            <tag> JavaScript </tag>
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>基于Inline-Block布局+vertical-Align的研究</title>
+      <link href="2019/01/12/%E5%9F%BA%E4%BA%8EInline-Block%E5%B8%83%E5%B1%80+vertical-Align%E7%9A%84%E7%A0%94%E7%A9%B6/"/>
+      <url>2019/01/12/%E5%9F%BA%E4%BA%8EInline-Block%E5%B8%83%E5%B1%80+vertical-Align%E7%9A%84%E7%A0%94%E7%A9%B6/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：这个探究主要源于ife任务6的一个布局困扰，继而产生以下这些探究及结论，如解释有误或有新的见解，请及时与我联系，谢谢大家的捧场。</p></blockquote><h3 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h3><p>有需求才会有解决方案，那么，这个需求是什么呢？</p><p>这是任务6布局的两个点</p><p><img src="https://blog-1257093177.cos.ap-chengdu.myqcloud.com/issue-01-1.png" class="lazyload" data-srcset="https://blog-1257093177.cos.ap-chengdu.myqcloud.com/issue-01-1.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="eg"></p><p><img src="https://blog-1257093177.cos.ap-chengdu.myqcloud.com/issue-02.png" class="lazyload" data-srcset="https://blog-1257093177.cos.ap-chengdu.myqcloud.com/issue-02.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="eg"></p><p>review了许多同学的代码，实现方式基本局限于两种，position定位、float+内外边距再者就是两者结合，那么又没有第三种更为简单的适合的方法呢？<br>答案是有的，那就是基于inlink-block+vertical-align的方式</p><h3 id="inline-block-vertical-align"><a href="#inline-block-vertical-align" class="headerlink" title="inline-block + vertical-align"></a>inline-block + vertical-align</h3><p>什么是inline-block相信大家比我还要清楚，但用来布局的话还有几个重要的点需要大家着重注意的：</p><blockquote><p>  inline-block是行内块级元素，因此这种布局仅适用于单排布局（这点大家应该不会有太多异议吧）<br>    inline-block布局+vertical-align的关键点在于valign特性的使用，因此对于vertical-align的理解尤为关键（具体可参照<a href="https://www.zhangxinxu.com/wordpress/2010/05/%E6%88%91%E5%AF%B9css-vertical-align%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3%E4%B8%8E%E8%AE%A4%E8%AF%86%EF%BC%88%E4%B8%80%EF%BC%89/">张鑫旭大神关于vertical-align的理解</a>）</p></blockquote><h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>基于上述技术，我写了一个新的解决方法，具体如下：</p><p>html代码部分：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;header <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;header&quot;</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;header-mark&quot;</span>&gt;</span><br><span class="line">        &lt;span&gt;ife.baidu.com&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;header-date&quot;</span>&gt;</span><br><span class="line">        &lt;span&gt;<span class="number">2016.03</span>&lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/header&gt;</span><br></pre></td></tr></table></figure><p>css代码部分：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*头部*/</span></span><br><span class="line">.header&#123;</span><br><span class="line">    font-size: 12px;</span><br><span class="line">    vertical-align: bottom;</span><br><span class="line">&#125;</span><br><span class="line">    .header-mark&#123;</span><br><span class="line">        float: left;</span><br><span class="line">        width: 110px;</span><br><span class="line">        height: 61px;</span><br><span class="line">        display: inline-block;</span><br><span class="line">        background-color: #d45d5c;</span><br><span class="line">    &#125;</span><br><span class="line">    .header-mark::before&#123;</span><br><span class="line">        content:<span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        line-height: 58px;</span><br><span class="line">    &#125;</span><br><span class="line">    .header-mark&gt;span&#123;</span><br><span class="line">        vertical-align: bottom;</span><br><span class="line">    &#125;</span><br><span class="line">    .header-date&#123;</span><br><span class="line">        float:right;</span><br><span class="line">        height: 61px;</span><br><span class="line">        display: inline-block;</span><br><span class="line">        color: #d45d5c;</span><br><span class="line">    &#125;</span><br><span class="line">    .header-date::before&#123;</span><br><span class="line">        content:<span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        line-height: 58px;</span><br><span class="line">        margin-left: -<span class="number">0.</span>5em;</span><br><span class="line">    &#125;</span><br><span class="line">    .header-date&gt;span&#123;</span><br><span class="line">        vertical-align: bottom;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>原理其实很简单，利用伪元素去做基准线，然后其它元素以伪元素为基准进行排布，方便快捷，更重要的是这种方式维护起来也跟方便</p><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><blockquote><p>写的不好的地方请大家多多包涵，也请大家不吝啬给出意见，共同学习，共同进步，谢谢大家！</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日常学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 学习 </tag>
+            
+            <tag> 百度Ife </tag>
             
         </tags>
       
